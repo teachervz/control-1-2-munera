@@ -499,6 +499,30 @@ mark{background:linear-gradient(transparent 55%,#FFE08A 55%);color:inherit;paddi
 .self-b:hover{border-color:var(--pr)}
 .self-b b{background:var(--pr-s);color:var(--pr);border-radius:999px;padding:0 12px;margin-inline-start:6px}
 
+/* ---------- سؤال تفكير مفتوح (بدون خيارات) ---------- */
+.think{display:grid;grid-template-columns:1fr 370px;gap:40px;height:100%}
+.tk-main{display:flex;flex-direction:column;gap:20px;justify-content:center}
+.tk-q{display:flex;align-items:center;gap:28px;background:#fff;border-radius:40px;padding:26px 36px;box-shadow:var(--shadow);border-inline-start:14px solid var(--pr)}
+.tk-ic{flex:none;width:116px;height:116px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--pr-s) 75%);display:grid;place-items:center;font-size:72px;box-shadow:inset 0 0 0 8px #fff,0 10px 24px rgba(91,87,217,.15)}
+.slide.active .tk-ic{animation:bob 3s ease-in-out infinite}
+.tk-q p{font-size:40px;font-weight:900;line-height:1.5}
+.tk-tools{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.tk-hints{display:flex;flex-wrap:wrap;gap:12px}
+.think.ideas .tk-hints,.think.ideas .tk-h{display:none}
+.tk-hint{font-size:28px;font-weight:800;background:var(--amber-s);color:#7A4A00;border-radius:999px;padding:10px 24px;animation:rise .4s}
+.tk-ideas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tk-idea{font-size:25px;font-weight:700;background:var(--ok-s);border-radius:18px;padding:12px 20px;line-height:1.45;border-inline-start:8px solid var(--ok);animation:rise .4s}
+.tk-side{display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;background:#fff;border-radius:34px;box-shadow:var(--shadow);padding:22px}
+.tk-lbl{font-size:24px;font-weight:800;color:var(--muted)}
+.bloom{display:flex;flex-direction:column;align-items:center;gap:5px;width:100%}
+.bl{height:36px;border-radius:10px;display:grid;place-items:center;font-size:21px;font-weight:800;color:var(--muted);background:var(--bg);transition:.3s}
+.bl.on{background:linear-gradient(90deg,var(--pr),var(--pink));color:#fff;transform:scale(1.1);box-shadow:0 6px 14px rgba(91,87,217,.3)}
+.tk-side .tring{width:160px;height:160px}
+.tk-side .tnum{font-size:46px}
+.tk-aw{display:flex;gap:7px}
+.tk-aw button{width:54px;height:54px;border-radius:50%;background:var(--c);font-size:24px;display:grid;place-items:center;box-shadow:0 5px 12px rgba(0,0,0,.15);transition:.2s}
+.tk-aw button:hover{transform:translateY(-3px) scale(1.06)}
+
 /* ---------- العصف الذهني ---------- */
 .brain{display:flex;gap:40px;height:100%}
 .br-side{flex:0 0 560px;display:flex;flex-direction:column;gap:18px}
@@ -842,7 +866,18 @@ const SLIDES = [
     sum: '👁️ + 🎛️ = <b>أنظمة المراقبة والتحكم</b>: تجمع الوظيفتين معًا، مثل المكيف الذي يراقب الحرارة ثم يتحكم في التشغيل والإيقاف.'
   },
 
-  /* 7) وقفة إيمانية */
+  /* 7) سؤال تفكير: تقييم */
+  {
+    type: 'think', fx: 'zoom',
+    strategy: '🧠 سؤال تفكير • تقييم',
+    title: 'فكّري… ثم دافعي عن رأيكِ',
+    level: 'تقييم', icon: '⚖️', seconds: 60,
+    question: 'هل يحتاج <mark>كل</mark> نظام تحكم إلى نظام مراقبة؟ أيّدي أو اعترضي، ودعمي رأيكِ بمثال من حياتكِ.',
+    hints: ['🧺 تذكّري الغسالة بالمؤقت', '❄️ وقارنيها بالمكيف', '🔍 أيّهما «يعرف» النتيجة؟'],
+    ideas: ['❌ ليس كلها: الغسالة بالمؤقت تتحكم دون أن تراقب النتيجة', '✅ المكيف يحتاج مستشعرًا يراقب الحرارة ليقرر', '💡 المراقبة تجعل التحكم «ذكيًا» يعدّل نفسه', '🔑 وهذا هو الفرق بين التحكم المفتوح والمغلق… لنكتشفه الآن!']
+  },
+
+  /* 8) وقفة إيمانية */
   {
     type: 'faith', fx: 'zoom',
     strategy: '🤍 وقفة إيمانية',
@@ -856,7 +891,7 @@ const SLIDES = [
     ]
   },
 
-  /* 8) نوعا نظام التحكم (من الكتاب) */
+  /* 9) نوعا نظام التحكم (من الكتاب) */
   {
     type: 'loops', fx: 'slide',
     strategy: '🧩 أنواع أنظمة التحكم',
@@ -873,7 +908,7 @@ const SLIDES = [
     key: '🔑 كلمة السر للتمييز بينهما: <mark>التغذية الراجعة</mark>'
   },
 
-  /* 9) التصنيف — تعلم تعاوني */
+  /* 10) التصنيف — تعلم تعاوني */
   {
     type: 'sort', fx: 'slide',
     strategy: '🤝 التعلم التعاوني',
@@ -897,7 +932,18 @@ const SLIDES = [
     wrongHint: 'فكّري: هل يقيس النتيجة ويعدّل نفسه؟ 💜'
   },
 
-  /* 10) جسم الإنسان — تفكير عليا + ربط ديني */
+  /* 11) سؤال تفكير: إبداع */
+  {
+    type: 'think', fx: 'zoom',
+    strategy: '🧠 سؤال تفكير • إبداع',
+    title: 'أنتِ المهندسة! 🚦',
+    level: 'إبداع', icon: '🚦', seconds: 90,
+    question: 'إشارات المرور التقليدية نظام مفتوح يعمل بتوقيت ثابت… صمّمي فكرة تحوّلها إلى <mark>نظام مغلق ذكي</mark> يخفّف زحام شوارع الرياض!',
+    hints: ['📡 أيّ مستشعر يعدّ السيارات؟', '⚖️ ماذا يقارن النظام؟', '🔁 أين التغذية الراجعة؟'],
+    ideas: ['⏲️ مستشعرات ضغط تحت الطريق أو كاميرات تعدّ السيارات', '⚖️ يقارن طول الطابور في كل اتجاه', '🟢 يطيل الإشارة الخضراء للاتجاه المزدحم', '🚑 يفتح الطريق تلقائيًا لسيارة الإسعاف']
+  },
+
+  /* 12) جسم الإنسان — تفكير عليا + ربط ديني */
   {
     type: 'body', fx: 'zoom',
     strategy: '🫀 تأمّل وتحليل • مهارات التفكير العليا',
@@ -913,7 +959,24 @@ const SLIDES = [
     answer: 'لن يعرف حرارته! فقد يتعرّق بلا توقف أو لا يتعرّق أبدًا 😵 لكن الله خلقه نظامًا مغلقًا متقنًا يراقب ويعدّل نفسه باستمرار. <span class="qa">﴿صُنْعَ اللَّهِ الَّذِي أَتْقَنَ كُلَّ شَيْءٍ﴾</span> [النمل: 88]'
   },
 
-  /* 11) المستشعرات — بطاقات قابلة للقلب */
+  /* 13) سؤال تفكير عليا: تحليل (تشبيه) */
+  {
+    type: 'mcq', fx: 'slide',
+    strategy: '❓ سؤال تفكير عليا • تحليل',
+    title: 'اكتشفي الشبه 🔍',
+    visual: '🖐️',
+    question: 'ما وجه الشبه بين مستشعر الحرارة في المكيف و«الجلد» في جسم الإنسان؟',
+    options: [
+      { icon: '🌡️', text: 'كلاهما يقيس التغيّر ويرسل إشارة للتحكم' },
+      { icon: '🔥', text: 'كلاهما يولّد الحرارة' },
+      { icon: '❄️', text: 'كلاهما يبرّد الهواء' },
+      { icon: '🚫', text: 'لا يوجد أي شبه' }
+    ],
+    answer: 0,
+    explain: 'الجلد «مستشعر» يرسل إلى الدماغ «جهاز التحكم»، كما يرسل مستشعر المكيف إلى وحدة التحكم.'
+  },
+
+  /* 14) المستشعرات — بطاقات قابلة للقلب */
   {
     type: 'sensors', fx: 'slide',
     strategy: '📡 المستشعرات',
@@ -932,7 +995,7 @@ const SLIDES = [
     ask: '🤍 <span class="qa">﴿وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۙ لَعَلَّكُمْ تَشْكُرُونَ﴾</span> — ما «المستشعرات» التي وهبكِ الله إياها؟ وكيف تشكرينه عليها؟'
   },
 
-  /* 12) تحدي الدقيقة: من أنا؟ */
+  /* 15) تحدي الدقيقة: من أنا؟ */
   {
     type: 'challenge', fx: 'zoom',
     strategy: '⚡ تحدي الدقيقة',
@@ -952,7 +1015,18 @@ const SLIDES = [
     ]
   },
 
-  /* 13) العصف الذهني */
+  /* 16) سؤال تفكير: تقييم */
+  {
+    type: 'think', fx: 'zoom',
+    strategy: '🧠 سؤال تفكير • تقييم',
+    title: 'جوال بلا حواسّ! 📱',
+    level: 'تقييم', icon: '📱', seconds: 60,
+    question: 'لو فقد جوالكِ جميع مستشعراته فجأة… أيّها ستفتقدين أكثر؟ رتّبي أهم ثلاثة مستشعرات وبرّري ترتيبكِ.',
+    hints: ['👆 كيف ستستخدمينه بلا لمس؟', '💡 وشاشته تحت الشمس؟', '📡 والمكالمة قرب الأذن؟'],
+    ideas: ['👆 اللمس: لن أستطيع استخدام الشاشة أصلًا!', '💡 الضوء: لن يتكيّف سطوع الشاشة مع المكان', '📡 التقارب: سأضغط أزرارًا بخدّي أثناء المكالمة 😅', '🎤 الصوت: لن يعمل المساعد الصوتي']
+  },
+
+  /* 17) العصف الذهني */
   {
     type: 'brainstorm', fx: 'slide',
     strategy: '🧠 العصف الذهني',
@@ -962,7 +1036,7 @@ const SLIDES = [
     ideas: ['🏃 مستشعر حركة يُطفئ أنوار الفصل الفارغ', '🔥 مستشعر دخان في المختبر والمقصف', '🌡️ مستشعر حرارة يضبط المكيفات', '🚰 مستشعر يغلق صنبور الماء تلقائيًا', '🌱 مستشعر رطوبة لري حديقة المدرسة', '🔊 مستشعر صوت يقيس الضوضاء في الممرات', '🚌 مستشعر تقارب يساعد الحافلات على الاصطفاف']
   },
 
-  /* 14) الربط بالوطن
+  /* 18) الربط بالوطن
         choices: الخيارات الثلاثة لكل بطاقة • answer: رقم الخيار الصحيح بدءاً من 0 */
   {
     type: 'homeland', fx: 'zoom',
@@ -979,7 +1053,35 @@ const SLIDES = [
     answer: 'سلامة الطرق 🚗 • جودة الحياة 🏙️ • ترشيد الماء والطاقة 💧⚡ • خدمة ضيوف الرحمن 🕋 • مدن ذكية مثل نيوم 🌆'
   },
 
-  /* 15) فكري – زاوجي – شاركي */
+  /* 19) سؤال تفكير عليا: تطبيق وتقييم */
+  {
+    type: 'mcq', fx: 'slide',
+    strategy: '❓ سؤال تفكير عليا • تقييم',
+    title: 'قرار المزارعة 🌴',
+    visual: '🌴',
+    question: 'مزارعة في القصيم تريد ريّ نخيلها مع توفير الماء 💧 أيّ نظام تختار؟',
+    options: [
+      { icon: '⏲️', text: 'مؤقت يسقي ساعتين كل يوم' },
+      { icon: '🌱', text: 'مستشعر رطوبة يشغّل الري عند الجفاف' },
+      { icon: '🖐️', text: 'ري يدوي عندما تتذكّر' },
+      { icon: '🚿', text: 'ري مستمر طوال اليوم' }
+    ],
+    answer: 1,
+    explain: 'نظام مغلق يسقي فقط عند الحاجة: يوفّر الماء ولا يُغرق النخيل ولا يعطّشه.'
+  },
+
+  /* 20) سؤال تفكير: تقييم (أخلاقيات التقنية) */
+  {
+    type: 'think', fx: 'zoom',
+    strategy: '🧠 سؤال تفكير • تقييم',
+    title: 'نعمة… أم تهديد؟ 🔐',
+    level: 'تقييم', icon: '🔐', seconds: 90,
+    question: 'الكاميرات والمستشعرات تنتشر في كل مكان… هل هي نعمة أم تهديد لخصوصيتنا؟ متى تكون نافعة؟ ومتى تصبح ضارة؟',
+    hints: ['🚗 فكّري في ساهر والسلامة', '📸 وفي تصوير الآخرين دون إذن', '🤍 ماذا يعلّمنا ديننا عن الخصوصية؟'],
+    ideas: ['✅ نافعة: الأمن والسلامة وإنقاذ الأرواح وترشيد الموارد', '⚠️ ضارة: إذا استُخدمت للتجسّس أو نشر صور الناس دون إذن', '⚖️ الحل: أنظمة تحمي البيانات (كنظام حماية البيانات الشخصية في المملكة) واستخدام مسؤول', '🤍 «مِن حُسنِ إسلامِ المرءِ تركُه ما لا يعنيه» (رواه الترمذي)']
+  },
+
+  /* 21) فكري – زاوجي – شاركي */
   {
     type: 'tps', fx: 'slide',
     strategy: '👥 فكّري – زاوجي – شاركي',
@@ -993,7 +1095,7 @@ const SLIDES = [
     answer: '📡 مستشعرات التقارب والرادار والكاميرا تكتشف الطفل ← ترسل البيانات لنظام التحكم ← يقارن المسافة بالسرعة ← يفعّل <b>المكابح التلقائية</b> ⛔ وينبّه السائق 🔔<br>🤔 للتقييم: لو أخطأ النظام… مَن المسؤول؟ المبرمج؟ الشركة؟ أم السائق؟'
   },
 
-  /* 16) سؤال 1 */
+  /* 22) سؤال 1 */
   {
     type: 'mcq', fx: 'slide',
     strategy: '❓ استراتيجية الأسئلة',
@@ -1010,7 +1112,7 @@ const SLIDES = [
     explain: 'لأنه يراقب المخرجات (حرارة الغرفة) ويستخدمها في ضبط نفسه = تغذية راجعة.'
   },
 
-  /* 17) سؤال 2 */
+  /* 23) سؤال 2 */
   {
     type: 'mcq', fx: 'slide',
     strategy: '❓ استراتيجية الأسئلة',
@@ -1027,7 +1129,7 @@ const SLIDES = [
     explain: 'المغلق يقارن النتيجة الفعلية بالمطلوبة ويعدّل نفسه، والمفتوح لا يفعل ذلك.'
   },
 
-  /* 18) سؤال تفكير عليا + تقييم فوري */
+  /* 24) سؤال تفكير عليا + تقييم فوري */
   {
     type: 'mcq', fx: 'zoom',
     strategy: '📝 التقييم الفوري • سؤال تفكير عليا',
@@ -1044,7 +1146,7 @@ const SLIDES = [
     selfAssess: true
   },
 
-  /* 19) صح أم خطأ */
+  /* 25) صح أم خطأ */
   {
     type: 'tf', fx: 'slide',
     strategy: '✔✖ صح أم خطأ',
@@ -1058,7 +1160,18 @@ const SLIDES = [
     ]
   },
 
-  /* 20) مهمة جماعية تصميمية */
+  /* 26) سؤال تفكير: تحليل واستنتاج */
+  {
+    type: 'think', fx: 'zoom',
+    strategy: '🧠 سؤال تفكير • تحليل',
+    title: 'عطل غامض! 🛠️',
+    level: 'تحليل', icon: '🛠️', seconds: 60,
+    question: 'تعطّل مستشعر الحرارة في المكيف وأصبح يقرأ دائمًا <span dir="ltr">35°</span> مهما بردت الغرفة! ماذا سيحدث؟ وكيف يمكن أن يكتشف النظام هذا العطل؟',
+    hints: ['🧠 ماذا سيقرّر جهاز التحكم؟', '🥶 كيف ستصبح الغرفة؟', '🔍 ماذا لو وُجد مستشعر ثانٍ؟'],
+    ideas: ['❄️ سيظن النظام أن الغرفة حارة فيبقى المكيف يعمل بلا توقف', '🥶 تبرد الغرفة جدًا ويُهدر الكهرباء', '🔍 يكتشف العطل بمقارنة قراءتي مستشعرين مختلفين', '🧰 أو إذا لم تتغيّر القراءة رغم التشغيل الطويل ← ينبّه للصيانة']
+  },
+
+  /* 27) مهمة جماعية تصميمية */
   {
     type: 'group', fx: 'zoom',
     strategy: '🛠️ مهمة المهندسات • تعلّم تعاوني',
@@ -1081,7 +1194,7 @@ const SLIDES = [
     ]
   },
 
-  /* 21) المراجعة بخريطة ذهنية (ربط بالدرس السابق) */
+  /* 28) المراجعة بخريطة ذهنية (ربط بالدرس السابق) */
   {
     type: 'mindmap', fx: 'zoom',
     strategy: '🗺️ مراجعة بخريطة ذهنية',
@@ -1095,14 +1208,14 @@ const SLIDES = [
     ]
   },
 
-  /* 22) نتيجة التنافس: منصة التتويج (تُقرأ النقاط تلقائياً من لوحة النقاط) */
+  /* 29) نتيجة التنافس: منصة التتويج (تُقرأ النقاط تلقائياً من لوحة النقاط) */
   {
     type: 'podium', fx: 'zoom',
     strategy: '🏆 نتيجة التنافس',
     title: 'لوحة الشرف… مَن الفريق الفائز؟'
   },
 
-  /* 23) الختام */
+  /* 30) الختام */
   {
     type: 'closing', fx: 'zoom',
     icon: '🏆',
@@ -1798,6 +1911,36 @@ RENDER.mcq = (s, root) => {
   root.querySelector('.rv').onclick = () => ctl.reveal();
   root.querySelector('.rs').onclick = () => { ctl.reset(); ex && ex.classList.remove('show'); };
   root.querySelectorAll('.self-b').forEach(b => b.onclick = () => { const n = b.querySelector('b'); n.textContent = +n.textContent + 1; pop(b); Sound.click(); });
+};
+
+/* 🧠 سؤال تفكير مفتوح: مستوى بلوم + مؤقت + تلميحات + أفكار نموذجية + نقطة لأفضل إجابة */
+RENDER.think = (s, root) => {
+  const LEVELS = ['إبداع', 'تقييم', 'تحليل', 'تطبيق', 'فهم', 'تذكّر'];
+  root.innerHTML = shell(s, `<div class="think">
+    <div class="tk-main">
+      <div class="tk-q st"><span class="tk-ic">${s.icon || '🧠'}</span><p>${s.question}</p></div>
+      <div class="tk-tools st">
+        ${s.hints ? '<button class="btn ghost tk-h">💡 تلميح</button>' : ''}
+        <button class="btn tk-i">✨ أفكار نموذجية</button>
+      </div>
+      <div class="tk-hints"></div>
+      <div class="tk-ideas"></div>
+    </div>
+    <div class="tk-side st">
+      <div class="tk-lbl">🧠 مستوى التفكير</div>
+      <div class="bloom">${LEVELS.map((l, i) => `<span class="bl${l === s.level ? ' on' : ''}" style="width:${46 + i * 10.8}%">${l}</span>`).join('')}</div>
+      <div class="tk-tm"></div>
+      <div class="tk-lbl">🏆 نقطة لأفضل إجابة</div>
+      <div class="tk-aw">${LESSON.groups.map((g, i) => `<button data-g="${i}" style="--c:${g.color}" title="${g.name}">${g.icon}</button>`).join('')}</div>
+    </div>
+  </div>`);
+  root.querySelector('.tk-tm').appendChild(makeTimer(s.seconds || 60));
+  const hBox = root.querySelector('.tk-hints'), iBox = root.querySelector('.tk-ideas');
+  const hb = root.querySelector('.tk-h'), ib = root.querySelector('.tk-i');
+  let h = 0, k = 0;
+  if (hb) hb.onclick = () => { if (h < s.hints.length){ hBox.insertAdjacentHTML('beforeend', `<span class="tk-hint">${s.hints[h++]}</span>`); Sound.click(); } if (h >= s.hints.length) hb.disabled = true; };
+  ib.onclick = () => { root.querySelector('.think').classList.add('ideas'); if (k < s.ideas.length){ iBox.insertAdjacentHTML('beforeend', `<div class="tk-idea">${s.ideas[k++]}</div>`); Sound.ding(); } if (k >= s.ideas.length){ ib.disabled = true; ib.textContent = 'أحسنتنّ التفكير! 👏'; } };
+  root.querySelectorAll('.tk-aw button').forEach(b => b.onclick = () => Teams.add(+b.dataset.g, 1, b));
 };
 
 /* العصف الذهني: أفكار على شكل ملصقات */
